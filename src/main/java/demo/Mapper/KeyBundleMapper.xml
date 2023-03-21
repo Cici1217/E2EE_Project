@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="demo.Mapper.KeyBundleMapper">
+    <!--select查询语句-->
+    <select id="selectMaxId" resultType="Integer">
+        select max(id)
+        from keybundle;
+    </select>
+
+    <insert id="setKeyBundle">
+        insert into keybundle
+        values (#{id}, #{userId}, #{identityKey});
+    </insert>
+
+    <select id="selectIdentityKey" resultType="String">
+        select identitykey from keybundle where userid = #{userId};
+    </select>
+
+</mapper>

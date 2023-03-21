@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="demo.Mapper.SignedPreKeyMapper">
+    <!--select查询语句-->
+    <select id="selectMaxId" resultType="Integer">
+        select max(id)
+        from signedprekey;
+    </select>
+    <insert id="setSignedPreKey">
+        insert into signedprekey values (#{id}, #{userId}, #{keyId}, #{publicKey}, #{signature});
+    </insert>
+    <select id="selectKeyIdByUserId" resultType="int">
+        select keyid from signedprekey where userid = #{userId};
+    </select>
+    <select id="selectPublicKeyByUserId" resultType="String">
+        select publickey from signedprekey where userid = #{userId};
+    </select>
+    <select id="selectSignatureByUserId" resultType="String">
+        select signature from signedprekey where userid = #{userId};
+    </select>
+    <select id="selectByUserId" resultType="demo.pojo.SignedPreKey">
+        select * from signedprekey where userid = #{userId};
+    </select>
+
+</mapper>

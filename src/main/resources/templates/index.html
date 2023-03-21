@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Netty-Websocket</title>
+    <script type="text/javascript">
+        let socket;
+        if(window.WebSocket){
+            socket = new WebSocket("ws://114.132.157.188:9090/ws");
+            socket.onmessage = function(event){
+                let textarea = document.getElementById('responseText');
+                textarea.value += event.data+"\r\n";
+            };
+            socket.onopen = function(event){
+                let textarea = document.getElementById('responseText');
+                textarea.value = "Netty-WebSocket服务器连接  \r\n";
+            };
+            socket.onclose = function(event){
+                let textarea = document.getElementById('responseText');
+                textarea.value = "Netty-WebSocket服务器关闭 \r\n";
+            };
+        } else {
+            alert("您的浏览器不支持WebSocket协议！");
+        }
+    </script>
+</head>
+<body>
+<form onSubmit="return false;">
+    <label>文本</label><input type="text" id="message" name="message" placeholder="这里输入消息" /> <br />
+    <br /> <input type="button" value="发送" onclick="send1()" />
+    <script>
+        function send1(){
+            if(!window.WebSocket){return;}
+            if(socket.readyState === WebSocket.OPEN) {
+                let message = document.getElementById('message').value;
+                socket.send(message);
+            } else {
+                alert("WebSocket 连接没有建立成功！");
+            }
+
+        }
+    </script>
+    <hr color="black" />
+    <h3>消息记录</h3>
+    <textarea id="responseText" style="width: 1024px;height: 300px;"></textarea>
+</form>
+</body>
+
+</html>

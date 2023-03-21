@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="demo.Mapper.UserMapper">
+    <!--select查询语句-->
+    <select id="getById" resultType="demo.pojo.User">
+        select * from "User" where id = #{id}
+    </select>
+
+    <select id="getByUsername" resultType="demo.pojo.User">
+        select * from "User" where username = #{username}
+    </select>
+
+    <select id="selectMaxId" resultType="Integer">
+        select max(id) from "User";
+    </select>
+
+    <insert id="insertOneUser">
+        insert into "User" values (#{id},#{username},#{password},#{registrationID});
+    </insert>
+
+    <select id="getPasswordByUsername" resultType="String">
+        select password from "User" where username = #{username};
+    </select>
+    <select id="selectIdByUsername" resultType="int">
+        select id from "User" where username = #{username};
+    </select>
+</mapper>

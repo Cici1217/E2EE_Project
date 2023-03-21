@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="demo.Mapper.PreKeyMapper">
+    <!--select查询语句-->
+    <select id="selectMaxId" resultType="Integer">
+        select max(id)
+        from prekey;
+    </select>
+
+    <insert id="setPreKey">
+        insert into prekey
+        values (#{id}, #{userId}, #{keyId}, #{publicKey});
+    </insert>
+
+    <select id="selectKeyIdByUserId" resultType="Integer">
+        select keyid from prekey where userid = #{userId};
+    </select>
+
+    <select id="selectPublicKeyByUserId" resultType="String">
+        select publickey from prekey where userid = #{userId};
+    </select>
+
+    <select id="selectAll" resultType="demo.pojo.PreKey">
+        select * from prekey;
+    </select>
+
+</mapper>
