@@ -23,13 +23,22 @@ public class GroupOrIndividualController {
     public Map<Integer, Integer> goi(
             @RequestBody Map<String, Integer> map
     ) {
-        String val = String.valueOf(map.get("groupId"));
+        int groupId = map.get("groupId");
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        int userId = map.get("userId");
+        if (groupId == -1) {
+            String username = userMapper.getById(userId).getUsername();
+            Map<Integer, Integer> map1 = new HashMap<>();
+            map1.put(Integer.valueOf(username), userMapper.getRidByUserid(userId));
+            return map1;
+        }
+
         GroupMapper groupMapper = sqlSession.getMapper(GroupMapper.class);
-        List<Integer> userIds = groupMapper.selectByGroupId(Integer.parseInt(val));
+        List<Integer> userIds = groupMapper.selectByGroupId(groupId);
 
         Map<Integer, Integer> maps = new HashMap<>();
         //userid -> rid
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         for (Integer userid : userIds) {
             String username = userMapper.getById(userid).getUsername();
             maps.put(Integer.valueOf(username), userMapper.getRidByUserid(userid));
