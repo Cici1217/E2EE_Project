@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="demo.Mapper.GroupMapper">
+    <!--select查询语句-->
+    <select id="selectByGroupId" resultType="Integer">
+        select userid
+        from "group" where groupid=#{groupId};
+    </select>
+
+    <insert id="setGroup">
+        insert into "group"
+        values (#{id}, #{groupId}, #{userId});
+    </insert>
+
+    <select id="selectMaxId" resultType="Integer">
+        select max(id)
+        from "group";
+    </select>
+
+
+<!--    <select id="selectIdentityKey" resultType="String">-->
+<!--        select identitykey from keybundle where userid = #{userId};-->
+<!--    </select>-->
+
+</mapper>

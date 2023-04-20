@@ -27,4 +27,12 @@
     <select id="selectIdByUsername" resultType="int">
         select id from "User" where username = #{username};
     </select>
+
+    <select id="selectRidByUserName" resultType="int">
+        select registrationid from "User" where username = #{username};
+    </select>
+
+    <select id="getRidByUserid" resultType="int">
+        select registrationid from "User" where id = #{userId};
+    </select>
 </mapper>

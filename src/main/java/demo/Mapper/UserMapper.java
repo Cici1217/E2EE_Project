@@ -11,5 +11,6 @@ public interface UserMapper {
     int selectMaxId();
     void insertOneUser(int id,String username,String password,String registrationID);
     String getPasswordByUsername(String username);
-    int selectIdByUsername(String username);
+
+    int getRidByUserid(int userId);
 }

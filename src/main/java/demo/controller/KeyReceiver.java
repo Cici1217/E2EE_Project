@@ -5,7 +5,7 @@ import demo.Mapper.KeyBundleMapper;
 import demo.Mapper.PreKeyMapper;
 import demo.Mapper.SignedPreKeyMapper;
 import demo.Mapper.UserMapper;
-import demo.config.WebSocket;
+//import demo.config.WebSocket;
 import demo.pojo.KeyBundle;
 import demo.pojo.PreKey;
 import demo.result.Result;
@@ -26,7 +26,7 @@ public class KeyReceiver {
         System.out.println(keyBundle);
         System.out.println(keyBundle.getPreKeys().get(1));
         System.out.println(keyBundle.getIdentityKey());
-        WebSocket.setKeyMap(uid, keyBundle);
+//        WebSocket.setKeyMap(uid, keyBundle);
 
         //放到数据库里
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
