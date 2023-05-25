@@ -7,22 +7,20 @@
     <!--select查询语句-->
     <select id="selectByGroupId" resultType="Integer">
         select userid
-        from "group" where groupid=#{groupId};
+        from "group"
+        where groupid = #{groupId};
     </select>
 
-    <insert id="setGroup">
-        insert into "group"
-        values (#{id}, #{groupId}, #{userId});
-    </insert>
 
     <select id="selectMaxId" resultType="Integer">
         select max(id)
         from "group";
     </select>
 
+    <update id="addGroup">
+        insert into "group"
+        values (#{id},#{groupid}, #{userid});
+    </update>
 
-<!--    <select id="selectIdentityKey" resultType="String">-->
-<!--        select identitykey from keybundle where userid = #{userId};-->
-<!--    </select>-->
 
 </mapper>

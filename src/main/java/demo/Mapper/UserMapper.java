@@ -12,5 +12,5 @@ public interface UserMapper {
     void insertOneUser(int id,String username,String password,String registrationID);
     String getPasswordByUsername(String username);
 
-    int getRidByUserid(int userId);
+    int getRidByUserid(String userId);
 }

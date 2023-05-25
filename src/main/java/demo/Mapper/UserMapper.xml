@@ -33,6 +33,6 @@
     </select>
 
     <select id="getRidByUserid" resultType="int">
-        select registrationid from "User" where id = #{userId};
+        select registrationid from "User" where username = #{userId};
     </select>
 </mapper>
