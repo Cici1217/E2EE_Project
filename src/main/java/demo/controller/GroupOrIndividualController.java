@@ -28,9 +28,12 @@ public class GroupOrIndividualController {
         int groupId = map.get("groupId");
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         GroupMapper groupMapper = sqlSession.getMapper(GroupMapper.class);
-        List<Integer> userIds = groupMapper.selectByGroupId(groupId);
-        //这个地方取到了真正的userid
-
+        List<Integer> userIds=new ArrayList<>();
+        if(groupId!=-1) userIds = groupMapper.selectByGroupId(groupId);
+        else userIds.add(map.get("userId"));
+//        //这个地方取到了真正的userid
+//        System.out.println(userIds);
+//        System.out.println(groupId);
         Map<Integer, Integer> maps = new HashMap<>();
         //userid -> rid
         for (Integer userid : userIds) {
